@@ -167,8 +167,8 @@ def replace_main_list():
 
 
     with open('../public/index.html') as f:
-        html = re.sub(r'<!--\s*TEMPLATES_START\s*-->[\s\S]*?<!--\s*TEMPLATES_END\s*-->\n',
-                      "\n<!-- TEMPLATES_START -->{}<!-- TEMPLATES_END -->\n".format(templates),
+        html = re.sub(r'<!--\s*TEMPLATES_START\s*-->[\s\S]*?<!--\s*TEMPLATES_END\s*-->',
+                      "<!-- TEMPLATES_START -->{}<!-- TEMPLATES_END -->".format(templates),
                       f.read())
 
     with open('../public/index.html', 'w') as f:
