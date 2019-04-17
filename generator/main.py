@@ -193,19 +193,6 @@ def replace_main_list():
                     "actor": actor.title
                 })
 
-    #                 """
-    #                 <ons-list-item modifier="longdivider" tappable onclick="playSound('search-sound-{}', '{}')">
-    #                     <div class="left">
-    #                         <img id="search-sound-{}" class="list-item__thumbnail" src="/static/img/play.png">
-    #                     </div>
-    #                     <div class="center">
-    #                         <span class="list-item__title">{}</span>
-    #                         <span class="list-item__subtitle">{}</span>
-    #                     </div>
-    #                 </ons-list-item>
-    #                 """.format(sound.template_name, sound.mp3_url, sound.template_name, sound.title, actor.title)
-
-
     with open('../public/index.html') as f:
         html = f.read()
         html = re.sub(r'<!--\s*TEMPLATES_START\s*-->[\s\S]*?<!--\s*TEMPLATES_END\s*-->',
