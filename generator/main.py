@@ -68,6 +68,7 @@ def upload_missing_files(local_files_dict:dict, storage_files_list:dict):
     print("\nSynced files:\n - {} local\n - {} storage\n - added {}\n - removed {}"
           .format(total, len(storage_files_list), total_added, total_removed))
 
+    return total_added > 0 or total_removed > 0
 
 def replace_main_list():
 
@@ -234,5 +235,7 @@ def create_category_tree():
 local_files = find_all_local_files()
 storage_files = find_all_storage_files()
 
-upload_missing_files(local_files, storage_files)
+if upload_missing_files(local_files, storage_files):
+    storage_files = find_all_storage_files()
+
 replace_main_list()
