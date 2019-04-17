@@ -1,5 +1,6 @@
 import os
 import re
+import json
 import urllib.parse
 import firebase_admin
 from firebase_admin import credentials, storage
@@ -77,6 +78,11 @@ def replace_main_list():
             <ons-page id="home">
                 <ons-toolbar>
                     <div class="center">Everyone has problems...</div>
+                    <div class="right">
+                        <ons-toolbar-button>
+                            <ons-icon icon="ion-ios-search" onclick="pushPage('search.html')"></ons-icon>
+                        </ons-toolbar-button>
+                    </div>
                 </ons-toolbar>
                 <ons-list id="main-list">
         """
@@ -109,6 +115,11 @@ def replace_main_list():
                     <ons-toolbar>
                         <div class="left"><ons-back-button></ons-back-button></div>
                         <div class="center">{}</div>
+                        <div class="right">
+                            <ons-toolbar-button>
+                                <ons-icon icon="ion-ios-search" onclick="pushPage('search.html')"></ons-icon>
+                            </ons-toolbar-button>
+                        </div>
                     </ons-toolbar>
                     <ons-list id="main-list">
             """.format(category.template_name, category.title)
@@ -142,6 +153,11 @@ def replace_main_list():
                         <ons-toolbar>
                             <div class="left"><ons-back-button></ons-back-button></div>
                             <div class="center">{}</div>
+                            <div class="right">
+                                <ons-toolbar-button>
+                                    <ons-icon icon="ion-ios-search" onclick="pushPage('search.html')"></ons-icon>
+                                </ons-toolbar-button>
+                            </div>
                         </ons-toolbar>
                         <ons-list id="main-list">
                 """.format(actor.template_name, actor.title)
@@ -165,11 +181,39 @@ def replace_main_list():
                 </template>
                 """
 
+    all_sounds = []
+
+    for _, category in categories.items():
+        for _, actor in category.actors.items():
+            for _, sound in actor.sounds.items():
+                all_sounds.append({
+                    "template_name": sound.template_name,
+                    "mp3_url": sound.mp3_url,
+                    "title": sound.title,
+                    "actor": actor.title
+                })
+
+    #                 """
+    #                 <ons-list-item modifier="longdivider" tappable onclick="playSound('search-sound-{}', '{}')">
+    #                     <div class="left">
+    #                         <img id="search-sound-{}" class="list-item__thumbnail" src="/static/img/play.png">
+    #                     </div>
+    #                     <div class="center">
+    #                         <span class="list-item__title">{}</span>
+    #                         <span class="list-item__subtitle">{}</span>
+    #                     </div>
+    #                 </ons-list-item>
+    #                 """.format(sound.template_name, sound.mp3_url, sound.template_name, sound.title, actor.title)
+
 
     with open('../public/index.html') as f:
+        html = f.read()
         html = re.sub(r'<!--\s*TEMPLATES_START\s*-->[\s\S]*?<!--\s*TEMPLATES_END\s*-->',
                       "<!-- TEMPLATES_START -->{}<!-- TEMPLATES_END -->".format(templates),
-                      f.read())
+                      html)
+        html = re.sub(r'/\*\s*ALL_SOUNDS_START\s*\*/[\s\S]*?/\*\s*ALL_SOUNDS_END\s*\*/',
+                      "/*ALL_SOUNDS_START*/{}/*ALL_SOUNDS_END*/".format(json.dumps(all_sounds)),
+                      html)
 
     with open('../public/index.html', 'w') as f:
         f.write(html)
