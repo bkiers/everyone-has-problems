@@ -1,0 +1,2591 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script>
+        var player = null;
+        var paused = false;
+        var nowPlaying = null;
+        var soundIdNowPlaying = null;
+
+        function toggle(soundId, file) {
+            player = player || document.getElementById('player');
+
+            if (nowPlaying === file) {
+                if (paused) {
+                    play(soundId);
+                }
+                else {
+                    pause(soundId);
+                }
+            }
+            else {
+                if (nowPlaying !== null) {
+                    reset();
+                }
+                nowPlaying = file;
+                soundIdNowPlaying = soundId;
+                player.src = nowPlaying;
+                play(soundId);
+            }
+        }
+
+        function reset() {
+            if (nowPlaying !== null) {
+                var img = document.getElementById(soundIdNowPlaying) || {};
+                img.src = "/static/img/play.png";
+                paused = false;
+                nowPlaying = null;
+                soundIdNowPlaying = null;
+            }
+        }
+
+        function play(soundId) {
+            player = player || document.getElementById('player') || {};
+            var img = document.getElementById(soundId);
+            img.src = "/static/img/pause.png";
+            player.play();
+            paused = false;
+        }
+
+        function pause(soundId) {
+            player = player || document.getElementById('player') || {};
+            var img = document.getElementById(soundId);
+            img.src = "/static/img/play.png";
+            player.pause();
+            paused = true;
+        }
+    </script>
+</head>
+<body>
+
+<audio id="player" onended="reset()"></audio>
+
+<ons-navigator id="navigator" animation="slide" page="home.html"></ons-navigator>
+
+
+<!-- TEMPLATES_START -->
+        <template id="home.html">
+            <ons-page id="home">
+                <ons-toolbar>
+                    <div class="center">Everyone has problems...</div>
+                </ons-toolbar>
+                <ons-list id="main-list">
+        
+            <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('comedians.html')">
+                <div class="left">
+                    <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fcomedians%2Fimage.png?alt=media">
+                </div>
+                <div class="center">
+                    <span class="list-item__title">Comedians</span>
+                    <span class="list-item__subtitle"></span>
+                </div>
+            </ons-list-item>
+            
+            <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('family-guy.html')">
+                <div class="left">
+                    <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fimage.png?alt=media">
+                </div>
+                <div class="center">
+                    <span class="list-item__title">Family Guy</span>
+                    <span class="list-item__subtitle"></span>
+                </div>
+            </ons-list-item>
+            
+            <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('full-metal-jacket.html')">
+                <div class="left">
+                    <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffull.metal.jacket%2Fimage.png?alt=media">
+                </div>
+                <div class="center">
+                    <span class="list-item__title">Full Metal Jacket</span>
+                    <span class="list-item__subtitle"></span>
+                </div>
+            </ons-list-item>
+            
+            <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('internet-gekkies.html')">
+                <div class="left">
+                    <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fimage.png?alt=media">
+                </div>
+                <div class="center">
+                    <span class="list-item__title">Internet Gekkies</span>
+                    <span class="list-item__subtitle"></span>
+                </div>
+            </ons-list-item>
+            
+            <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('jiskefet.html')">
+                <div class="left">
+                    <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fjiskefet%2Fimage.png?alt=media">
+                </div>
+                <div class="center">
+                    <span class="list-item__title">Jiskefet</span>
+                    <span class="list-item__subtitle"></span>
+                </div>
+            </ons-list-item>
+            
+            <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('little-britain.html')">
+                <div class="left">
+                    <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Flittle.britain%2Fimage.png?alt=media">
+                </div>
+                <div class="center">
+                    <span class="list-item__title">Little Britain</span>
+                    <span class="list-item__subtitle"></span>
+                </div>
+            </ons-list-item>
+            
+            <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('office-space.html')">
+                <div class="left">
+                    <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Foffice.space%2Fimage.png?alt=media">
+                </div>
+                <div class="center">
+                    <span class="list-item__title">Office Space</span>
+                    <span class="list-item__subtitle"></span>
+                </div>
+            </ons-list-item>
+            
+            <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('seinfeld.html')">
+                <div class="left">
+                    <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fseinfeld%2Fimage.png?alt=media">
+                </div>
+                <div class="center">
+                    <span class="list-item__title">Seinfeld</span>
+                    <span class="list-item__subtitle"></span>
+                </div>
+            </ons-list-item>
+            
+            <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('south-park.html')">
+                <div class="left">
+                    <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fimage.png?alt=media">
+                </div>
+                <div class="center">
+                    <span class="list-item__title">South Park</span>
+                    <span class="list-item__subtitle"></span>
+                </div>
+            </ons-list-item>
+            
+            <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('superbad.html')">
+                <div class="left">
+                    <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsuperbad%2Fimage.png?alt=media">
+                </div>
+                <div class="center">
+                    <span class="list-item__title">Superbad</span>
+                    <span class="list-item__subtitle"></span>
+                </div>
+            </ons-list-item>
+            
+            <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('the-big-lebowski.html')">
+                <div class="left">
+                    <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fthe.big.lebowski%2Fimage.png?alt=media">
+                </div>
+                <div class="center">
+                    <span class="list-item__title">The Big Lebowski</span>
+                    <span class="list-item__subtitle"></span>
+                </div>
+            </ons-list-item>
+            
+            <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('the-wire.html')">
+                <div class="left">
+                    <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fthe.wire%2Fimage.png?alt=media">
+                </div>
+                <div class="center">
+                    <span class="list-item__title">The Wire</span>
+                    <span class="list-item__subtitle"></span>
+                </div>
+            </ons-list-item>
+            
+                </ons-list>
+            </ons-page>
+        </template>
+        
+            <template id="comedians.html">
+                <ons-page id="home">
+                    <ons-toolbar>
+                        <div class="left"><ons-back-button></ons-back-button></div>
+                        <div class="center">Comedians</div>
+                    </ons-toolbar>
+                    <ons-list id="main-list">
+            
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('comedians-bill-burr.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fcomedians%2Fbill.burr%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Bill Burr</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('comedians-donald-trump.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fcomedians%2Fdonald.trump%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Donald Trump</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('comedians-mitchell-and-webb.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fcomedians%2Fmitchell.and.webb%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Mitchell And Webb</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                    </ons-list>
+                </ons-page>
+            </template>
+            
+            <template id="family-guy.html">
+                <ons-page id="home">
+                    <ons-toolbar>
+                        <div class="left"><ons-back-button></ons-back-button></div>
+                        <div class="center">Family Guy</div>
+                    </ons-toolbar>
+                    <ons-list id="main-list">
+            
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('family-guy-bruce.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fbruce%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Bruce</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('family-guy-chris.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fchris%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Chris</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('family-guy-cleveland.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fcleveland%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Cleveland</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('family-guy-consuela.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fconsuela%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Consuela</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('family-guy-herbert-the-pervert.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fherbert.the.pervert%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Herbert The Pervert</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('family-guy-joe.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fjoe%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Joe</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('family-guy-old-gentlemen.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fold.gentlemen%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Old Gentlemen</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('family-guy-ollie-williams.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Follie.williams%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Ollie Williams</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('family-guy-peter.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fpeter%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Peter</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('family-guy-stewie.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fstewie%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Stewie</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                    </ons-list>
+                </ons-page>
+            </template>
+            
+            <template id="full-metal-jacket.html">
+                <ons-page id="home">
+                    <ons-toolbar>
+                        <div class="left"><ons-back-button></ons-back-button></div>
+                        <div class="center">Full Metal Jacket</div>
+                    </ons-toolbar>
+                    <ons-list id="main-list">
+            
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('full-metal-jacket-sergeant-hartman.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffull.metal.jacket%2Fsergeant.hartman%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Sergeant Hartman</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                    </ons-list>
+                </ons-page>
+            </template>
+            
+            <template id="internet-gekkies.html">
+                <ons-page id="home">
+                    <ons-toolbar>
+                        <div class="left"><ons-back-button></ons-back-button></div>
+                        <div class="center">Internet Gekkies</div>
+                    </ons-toolbar>
+                    <ons-list id="main-list">
+            
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('internet-gekkies-bob.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fbob%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Bob</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('internet-gekkies-kees.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fkees%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Kees</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('internet-gekkies-various.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fvarious%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Various</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                    </ons-list>
+                </ons-page>
+            </template>
+            
+            <template id="jiskefet.html">
+                <ons-page id="home">
+                    <ons-toolbar>
+                        <div class="left"><ons-back-button></ons-back-button></div>
+                        <div class="center">Jiskefet</div>
+                    </ons-toolbar>
+                    <ons-list id="main-list">
+            
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('jiskefet-kamphuijs.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fjiskefet%2Fkamphuijs%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Kamphuijs</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('jiskefet-kerstens.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fjiskefet%2Fkerstens%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Kerstens</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('jiskefet-van-binsbergen.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fjiskefet%2Fvan.binsbergen%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Van Binsbergen</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                    </ons-list>
+                </ons-page>
+            </template>
+            
+            <template id="little-britain.html">
+                <ons-page id="home">
+                    <ons-toolbar>
+                        <div class="left"><ons-back-button></ons-back-button></div>
+                        <div class="center">Little Britain</div>
+                    </ons-toolbar>
+                    <ons-list id="main-list">
+            
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('little-britain-carol-beer.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Flittle.britain%2Fcarol.beer%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Carol Beer</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                    </ons-list>
+                </ons-page>
+            </template>
+            
+            <template id="office-space.html">
+                <ons-page id="home">
+                    <ons-toolbar>
+                        <div class="left"><ons-back-button></ons-back-button></div>
+                        <div class="center">Office Space</div>
+                    </ons-toolbar>
+                    <ons-list id="main-list">
+            
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('office-space-lumberg.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Foffice.space%2Flumberg%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Lumberg</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                    </ons-list>
+                </ons-page>
+            </template>
+            
+            <template id="seinfeld.html">
+                <ons-page id="home">
+                    <ons-toolbar>
+                        <div class="left"><ons-back-button></ons-back-button></div>
+                        <div class="center">Seinfeld</div>
+                    </ons-toolbar>
+                    <ons-list id="main-list">
+            
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('seinfeld-jerry.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fseinfeld%2Fjerry%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Jerry</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                    </ons-list>
+                </ons-page>
+            </template>
+            
+            <template id="south-park.html">
+                <ons-page id="home">
+                    <ons-toolbar>
+                        <div class="left"><ons-back-button></ons-back-button></div>
+                        <div class="center">South Park</div>
+                    </ons-toolbar>
+                    <ons-list id="main-list">
+            
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('south-park-benny-the-banker.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fbenny.the.banker%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Benny The Banker</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('south-park-eric-cartman.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Feric.cartman%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Eric Cartman</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('south-park-liane-cartman.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fliane.cartman%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Liane Cartman</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('south-park-mall-cops.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fmall.cops%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Mall Cops</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('south-park-mr-garrison.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fmr.garrison%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Mr Garrison</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('south-park-mr-mackey.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fmr.mackey%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Mr Mackey</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('south-park-pc-principal.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fpc.principal%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Pc Principal</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('south-park-radiohead.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fradiohead%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Radiohead</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('south-park-token.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Ftoken%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Token</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('south-park-tony-hayward.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Ftony.hayward%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Tony Hayward</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('south-park-various.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fvarious%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Various</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                    </ons-list>
+                </ons-page>
+            </template>
+            
+            <template id="superbad.html">
+                <ons-page id="home">
+                    <ons-toolbar>
+                        <div class="left"><ons-back-button></ons-back-button></div>
+                        <div class="center">Superbad</div>
+                    </ons-toolbar>
+                    <ons-list id="main-list">
+            
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('superbad-seth.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsuperbad%2Fseth%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Seth</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                    </ons-list>
+                </ons-page>
+            </template>
+            
+            <template id="the-big-lebowski.html">
+                <ons-page id="home">
+                    <ons-toolbar>
+                        <div class="left"><ons-back-button></ons-back-button></div>
+                        <div class="center">The Big Lebowski</div>
+                    </ons-toolbar>
+                    <ons-list id="main-list">
+            
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('the-big-lebowski-jesus.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fthe.big.lebowski%2Fjesus%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Jesus</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('the-big-lebowski-the-dude.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fthe.big.lebowski%2Fthe.dude%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">The Dude</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                    </ons-list>
+                </ons-page>
+            </template>
+            
+            <template id="the-wire.html">
+                <ons-page id="home">
+                    <ons-toolbar>
+                        <div class="left"><ons-back-button></ons-back-button></div>
+                        <div class="center">The Wire</div>
+                    </ons-toolbar>
+                    <ons-list id="main-list">
+            
+                <ons-list-item modifier="chevron longdivider" tappable onclick="pushPage('the-wire-clay-davis.html')">
+                    <div class="left">
+                        <img class="list-item__thumbnail" src="https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fthe.wire%2Fclay.davis%2Fimage.png?alt=media">
+                    </div>
+                    <div class="center">
+                        <span class="list-item__title">Clay Davis</span>
+                        <span class="list-item__subtitle"></span>
+                    </div>
+                </ons-list-item>
+                
+                    </ons-list>
+                </ons-page>
+            </template>
+            
+                <template id="comedians-bill-burr.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Bill Burr</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-comedians-bill-burr-what-are-you-a-fagg', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fcomedians%2Fbill.burr%2Fwhat-are-you-a-fagg.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-comedians-bill-burr-what-are-you-a-fagg" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">What Are You A Fagg</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="comedians-donald-trump.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Donald Trump</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-comedians-donald-trump-grab-em-by-the-pussy', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fcomedians%2Fdonald.trump%2Fgrab-em-by-the-pussy.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-comedians-donald-trump-grab-em-by-the-pussy" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Grab Em By The Pussy</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-comedians-donald-trump-i-said-it-was-obsolete', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fcomedians%2Fdonald.trump%2Fi-said-it-was-obsolete.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-comedians-donald-trump-i-said-it-was-obsolete" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">I Said It Was Obsolete</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-comedians-donald-trump-im-not-stupid', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fcomedians%2Fdonald.trump%2Fim-not-stupid.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-comedians-donald-trump-im-not-stupid" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Im Not Stupid</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-comedians-donald-trump-the-people', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fcomedians%2Fdonald.trump%2Fthe-people.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-comedians-donald-trump-the-people" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">The People</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-comedians-donald-trump-you-are-fake-news', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fcomedians%2Fdonald.trump%2Fyou-are-fake-news.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-comedians-donald-trump-you-are-fake-news" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">You Are Fake News</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-comedians-donald-trump-you-are-stupid', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fcomedians%2Fdonald.trump%2Fyou-are-stupid.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-comedians-donald-trump-you-are-stupid" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">You Are Stupid</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="comedians-mitchell-and-webb.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Mitchell And Webb</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-comedians-mitchell-and-webb-i-might-have-a-glass-of-beer', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fcomedians%2Fmitchell.and.webb%2Fi-might-have-a-glass-of-beer.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-comedians-mitchell-and-webb-i-might-have-a-glass-of-beer" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">I Might Have A Glass Of Beer</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-comedians-mitchell-and-webb-its-such-a-lovely-day', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fcomedians%2Fmitchell.and.webb%2Fits-such-a-lovely-day.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-comedians-mitchell-and-webb-its-such-a-lovely-day" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Its Such A Lovely Day</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-comedians-mitchell-and-webb-not-exactly-brain-surgery', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fcomedians%2Fmitchell.and.webb%2Fnot-exactly-brain-surgery.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-comedians-mitchell-and-webb-not-exactly-brain-surgery" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Not Exactly Brain Surgery</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-comedians-mitchell-and-webb-not-exactly-rocket-science', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fcomedians%2Fmitchell.and.webb%2Fnot-exactly-rocket-science.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-comedians-mitchell-and-webb-not-exactly-rocket-science" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Not Exactly Rocket Science</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-comedians-mitchell-and-webb-oh-what-a-good-idea', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fcomedians%2Fmitchell.and.webb%2Foh-what-a-good-idea.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-comedians-mitchell-and-webb-oh-what-a-good-idea" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Oh What A Good Idea</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-comedians-mitchell-and-webb-ooh-look-at-that', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fcomedians%2Fmitchell.and.webb%2Fooh-look-at-that.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-comedians-mitchell-and-webb-ooh-look-at-that" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Ooh Look At That</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-comedians-mitchell-and-webb-refreshing-glass-of-crisp-beer', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fcomedians%2Fmitchell.and.webb%2Frefreshing-glass-of-crisp-beer.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-comedians-mitchell-and-webb-refreshing-glass-of-crisp-beer" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Refreshing Glass Of Crisp Beer</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="family-guy-bruce.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Bruce</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-bruce-hey-everybody', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fbruce%2Fhey-everybody.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-bruce-hey-everybody" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Hey Everybody</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-bruce-oh-no', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fbruce%2Foh-no.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-bruce-oh-no" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Oh No</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-bruce-the-adventure-begins-again', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fbruce%2Fthe-adventure-begins-again.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-bruce-the-adventure-begins-again" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">The Adventure Begins Again</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-bruce-today-is-the-big-day', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fbruce%2Ftoday-is-the-big-day.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-bruce-today-is-the-big-day" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Today Is The Big Day</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="family-guy-chris.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Chris</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-chris-you-are-very-precious-to-me', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fchris%2Fyou-are-very-precious-to-me.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-chris-you-are-very-precious-to-me" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">You Are Very Precious To Me</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="family-guy-cleveland.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Cleveland</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-cleveland-hop-on-your-bike', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fcleveland%2Fhop-on-your-bike.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-cleveland-hop-on-your-bike" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Hop On Your Bike</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-cleveland-raining-bitches', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fcleveland%2Fraining-bitches.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-cleveland-raining-bitches" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Raining Bitches</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-cleveland-that-thing-dont-bite', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fcleveland%2Fthat-thing-dont-bite.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-cleveland-that-thing-dont-bite" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">That Thing Dont Bite</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="family-guy-consuela.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Consuela</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-consuela-i-take-home', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fconsuela%2Fi-take-home.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-consuela-i-take-home" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">I Take Home</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-consuela-i-take', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fconsuela%2Fi-take.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-consuela-i-take" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">I Take</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-consuela-no-no', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fconsuela%2Fno-no.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-consuela-no-no" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">No No</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-consuela-superman-no-here', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fconsuela%2Fsuperman-no-here.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-consuela-superman-no-here" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Superman No Here</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="family-guy-herbert-the-pervert.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Herbert The Pervert</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-herbert-the-pervert-get-your-fat-ass-back-here', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fherbert.the.pervert%2Fget-your-fat-ass-back-here.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-herbert-the-pervert-get-your-fat-ass-back-here" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Get Your Fat Ass Back Here</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-herbert-the-pervert-make-sure-you-stretch', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fherbert.the.pervert%2Fmake-sure-you-stretch.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-herbert-the-pervert-make-sure-you-stretch" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Make Sure You Stretch</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-herbert-the-pervert-take-your-shirt-off', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fherbert.the.pervert%2Ftake-your-shirt-off.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-herbert-the-pervert-take-your-shirt-off" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Take Your Shirt Off</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-herbert-the-pervert-we-got-a-fighter', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fherbert.the.pervert%2Fwe-got-a-fighter.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-herbert-the-pervert-we-got-a-fighter" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">We Got A Fighter</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="family-guy-joe.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Joe</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-joe-right-on', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fjoe%2Fright-on.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-joe-right-on" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Right On</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-joe-what-a-surprise', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fjoe%2Fwhat-a-surprise.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-joe-what-a-surprise" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">What A Surprise</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="family-guy-old-gentlemen.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Old Gentlemen</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-old-gentlemen-caughing', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fold.gentlemen%2Fcaughing.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-old-gentlemen-caughing" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Caughing</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="family-guy-ollie-williams.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Ollie Williams</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-ollie-williams-its-gon-rain', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Follie.williams%2Fits-gon-rain.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-ollie-williams-its-gon-rain" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Its Gon Rain</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="family-guy-peter.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Peter</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-peter-gonna-miss-you', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fpeter%2Fgonna-miss-you.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-peter-gonna-miss-you" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Gonna Miss You</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-peter-i-have-spoken', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fpeter%2Fi-have-spoken.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-peter-i-have-spoken" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">I Have Spoken</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-peter-know-about-the-bird', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fpeter%2Fknow-about-the-bird.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-peter-know-about-the-bird" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Know About The Bird</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-peter-meg-your-services-will-no-longer-be-needed', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fpeter%2Fmeg-your-services-will-no-longer-be-needed.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-peter-meg-your-services-will-no-longer-be-needed" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Meg Your Services Will No Longer Be Needed</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-peter-moneeee', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fpeter%2Fmoneeee.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-peter-moneeee" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Moneeee</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-peter-oh-god-i-pooped-my-pants', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fpeter%2Foh-god-i-pooped-my-pants.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-peter-oh-god-i-pooped-my-pants" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Oh God I Pooped My Pants</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-peter-peter-laugh', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fpeter%2Fpeter-laugh.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-peter-peter-laugh" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Peter Laugh</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-peter-roadhouse', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fpeter%2Froadhouse.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-peter-roadhouse" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Roadhouse</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-peter-tiny-subtle-movements', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fpeter%2Ftiny-subtle-movements.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-peter-tiny-subtle-movements" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Tiny Subtle Movements</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-peter-wet-fart', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fpeter%2Fwet-fart.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-peter-wet-fart" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Wet Fart</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-peter-your-services-will-no-longer-be-needed', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fpeter%2Fyour-services-will-no-longer-be-needed.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-peter-your-services-will-no-longer-be-needed" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Your Services Will No Longer Be Needed</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="family-guy-stewie.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Stewie</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-stewie-cooler-than-playing-with-the-speech-function', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fstewie%2Fcooler-than-playing-with-the-speech-function.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-stewie-cooler-than-playing-with-the-speech-function" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Cooler Than Playing With The Speech Function</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-stewie-damn-you-vile-woman', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fstewie%2Fdamn-you-vile-woman.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-stewie-damn-you-vile-woman" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Damn You Vile Woman</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-stewie-go-away-fat-man', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fstewie%2Fgo-away-fat-man.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-stewie-go-away-fat-man" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Go Away Fat Man</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-stewie-i-dont-like-change', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fstewie%2Fi-dont-like-change.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-stewie-i-dont-like-change" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">I Dont Like Change</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-stewie-i-would-love-to-stay', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fstewie%2Fi-would-love-to-stay.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-stewie-i-would-love-to-stay" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">I Would Love To Stay</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-stewie-piss-off-perverted-old-freak', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fstewie%2Fpiss-off-perverted-old-freak.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-stewie-piss-off-perverted-old-freak" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Piss Off Perverted Old Freak</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-stewie-shut-up', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fstewie%2Fshut-up.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-stewie-shut-up" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Shut Up</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-stewie-take-the-bitch-down', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fstewie%2Ftake-the-bitch-down.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-stewie-take-the-bitch-down" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Take The Bitch Down</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-family-guy-stewie-thats-right-cry', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffamily.guy%2Fstewie%2Fthats-right-cry.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-family-guy-stewie-thats-right-cry" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Thats Right Cry</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="full-metal-jacket-sergeant-hartman.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Sergeant Hartman</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-full-metal-jacket-sergeant-hartman-hell-i-like-you', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffull.metal.jacket%2Fsergeant.hartman%2Fhell-i-like-you.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-full-metal-jacket-sergeant-hartman-hell-i-like-you" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Hell I Like You</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-full-metal-jacket-sergeant-hartman-suck-a-golf-ball-through-a-garden-hose', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Ffull.metal.jacket%2Fsergeant.hartman%2Fsuck-a-golf-ball-through-a-garden-hose.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-full-metal-jacket-sergeant-hartman-suck-a-golf-ball-through-a-garden-hose" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Suck A Golf Ball Through A Garden Hose</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="internet-gekkies-bob.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Bob</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-internet-gekkies-bob-op-je-muil-gauw', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fbob%2Fop-je-muil-gauw.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-internet-gekkies-bob-op-je-muil-gauw" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Op Je Muil Gauw</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-internet-gekkies-bob-optiefen-gauw', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fbob%2Foptiefen-gauw.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-internet-gekkies-bob-optiefen-gauw" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Optiefen Gauw</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="internet-gekkies-kees.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Kees</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-internet-gekkies-kees-die-agressie', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fkees%2Fdie-agressie.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-internet-gekkies-kees-die-agressie" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Die Agressie</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-internet-gekkies-kees-tering-proleten', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fkees%2Ftering-proleten.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-internet-gekkies-kees-tering-proleten" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Tering Proleten</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-internet-gekkies-kees-waterstofbom-op-mofrika', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fkees%2Fwaterstofbom-op-mofrika.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-internet-gekkies-kees-waterstofbom-op-mofrika" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Waterstofbom Op Mofrika</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="internet-gekkies-various.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Various</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-internet-gekkies-various-but-it-was-dirty', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fvarious%2Fbut-it-was-dirty.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-internet-gekkies-various-but-it-was-dirty" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">But It Was Dirty</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-internet-gekkies-various-diadeem', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fvarious%2Fdiadeem.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-internet-gekkies-various-diadeem" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Diadeem</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-internet-gekkies-various-goat-scream', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fvarious%2Fgoat-scream.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-internet-gekkies-various-goat-scream" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Goat Scream</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-internet-gekkies-various-hoe-hoe-hoe', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fvarious%2Fhoe-hoe-hoe.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-internet-gekkies-various-hoe-hoe-hoe" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Hoe Hoe Hoe</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-internet-gekkies-various-it-was-dirty', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fvarious%2Fit-was-dirty.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-internet-gekkies-various-it-was-dirty" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">It Was Dirty</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-internet-gekkies-various-it-was-not-dirty', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fvarious%2Fit-was-not-dirty.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-internet-gekkies-various-it-was-not-dirty" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">It Was Not Dirty</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-internet-gekkies-various-jullie-spelen-met-mijn-prive', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fvarious%2Fjullie-spelen-met-mijn-prive.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-internet-gekkies-various-jullie-spelen-met-mijn-prive" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Jullie Spelen Met Mijn Prive</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-internet-gekkies-various-naahhaa', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fvarious%2Fnaahhaa.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-internet-gekkies-various-naahhaa" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Naahhaa</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-internet-gekkies-various-oprotten-met-die-camera', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fvarious%2Foprotten-met-die-camera.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-internet-gekkies-various-oprotten-met-die-camera" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Oprotten Met Die Camera</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-internet-gekkies-various-please-dont', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fvarious%2Fplease-dont.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-internet-gekkies-various-please-dont" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Please Dont</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-internet-gekkies-various-uche-uche-uche', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fvarious%2Fuche-uche-uche.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-internet-gekkies-various-uche-uche-uche" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Uche Uche Uche</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-internet-gekkies-various-you-mean-i-dont-clean-good', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Finternet.gekkies%2Fvarious%2Fyou-mean-i-dont-clean-good.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-internet-gekkies-various-you-mean-i-dont-clean-good" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">You Mean I Dont Clean Good</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="jiskefet-kamphuijs.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Kamphuijs</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-jiskefet-kamphuijs-befkoning-de-eerste', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fjiskefet%2Fkamphuijs%2Fbefkoning-de-eerste.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-jiskefet-kamphuijs-befkoning-de-eerste" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Befkoning De Eerste</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-jiskefet-kamphuijs-biertje-kopen', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fjiskefet%2Fkamphuijs%2Fbiertje-kopen.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-jiskefet-kamphuijs-biertje-kopen" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Biertje Kopen</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-jiskefet-kamphuijs-doe-mij-maar-een-whiskey', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fjiskefet%2Fkamphuijs%2Fdoe-mij-maar-een-whiskey.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-jiskefet-kamphuijs-doe-mij-maar-een-whiskey" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Doe Mij Maar Een Whiskey</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="jiskefet-kerstens.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Kerstens</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-jiskefet-kerstens-arbeiders', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fjiskefet%2Fkerstens%2Farbeiders.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-jiskefet-kerstens-arbeiders" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Arbeiders</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-jiskefet-kerstens-kom-ter-zake-man', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fjiskefet%2Fkerstens%2Fkom-ter-zake-man.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-jiskefet-kerstens-kom-ter-zake-man" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Kom Ter Zake Man</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="jiskefet-van-binsbergen.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Van Binsbergen</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-jiskefet-van-binsbergen-jajajajajaja', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fjiskefet%2Fvan.binsbergen%2Fjajajajajaja.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-jiskefet-van-binsbergen-jajajajajaja" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Jajajajajaja</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="little-britain-carol-beer.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Carol Beer</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-little-britain-carol-beer-computer-says-no', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Flittle.britain%2Fcarol.beer%2Fcomputer-says-no.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-little-britain-carol-beer-computer-says-no" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Computer Says No</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-little-britain-carol-beer-ive-done-that-for-ya', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Flittle.britain%2Fcarol.beer%2Five-done-that-for-ya.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-little-britain-carol-beer-ive-done-that-for-ya" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Ive Done That For Ya</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="office-space-lumberg.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Lumberg</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-office-space-lumberg-did-you-see-the-memo', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Foffice.space%2Flumberg%2Fdid-you-see-the-memo.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-office-space-lumberg-did-you-see-the-memo" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Did You See The Memo</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-office-space-lumberg-we-have-sort-of-a-problem', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Foffice.space%2Flumberg%2Fwe-have-sort-of-a-problem.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-office-space-lumberg-we-have-sort-of-a-problem" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">We Have Sort Of A Problem</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-office-space-lumberg-whats-happening', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Foffice.space%2Flumberg%2Fwhats-happening.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-office-space-lumberg-whats-happening" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Whats Happening</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-office-space-lumberg-yeah-if-you-could-do-that', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Foffice.space%2Flumberg%2Fyeah-if-you-could-do-that.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-office-space-lumberg-yeah-if-you-could-do-that" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Yeah If You Could Do That</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="seinfeld-jerry.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Jerry</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-seinfeld-jerry-hello-newman', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fseinfeld%2Fjerry%2Fhello-newman.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-seinfeld-jerry-hello-newman" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Hello Newman</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="south-park-benny-the-banker.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Benny The Banker</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-benny-the-banker-aaaand-its-gone', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fbenny.the.banker%2Faaaand-its-gone.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-benny-the-banker-aaaand-its-gone" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Aaaand Its Gone</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-benny-the-banker-smart-decision', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fbenny.the.banker%2Fsmart-decision.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-benny-the-banker-smart-decision" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Smart Decision</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-benny-the-banker-well-thats-fantastic', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fbenny.the.banker%2Fwell-thats-fantastic.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-benny-the-banker-well-thats-fantastic" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Well Thats Fantastic</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="south-park-eric-cartman.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Eric Cartman</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-eric-cartman-big-fucking-deal', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Feric.cartman%2Fbig-fucking-deal.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-eric-cartman-big-fucking-deal" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Big Fucking Deal</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-eric-cartman-dude-not-cool', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Feric.cartman%2Fdude-not-cool.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-eric-cartman-dude-not-cool" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Dude Not Cool</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-eric-cartman-how-would-you-like-to-suck-my-balls', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Feric.cartman%2Fhow-would-you-like-to-suck-my-balls.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-eric-cartman-how-would-you-like-to-suck-my-balls" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">How Would You Like To Suck My Balls</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-eric-cartman-im-doing-the-best-i-can', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Feric.cartman%2Fim-doing-the-best-i-can.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-eric-cartman-im-doing-the-best-i-can" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Im Doing The Best I Can</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-eric-cartman-im-going-home', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Feric.cartman%2Fim-going-home.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-eric-cartman-im-going-home" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Im Going Home</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-eric-cartman-im-not-a-minor', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Feric.cartman%2Fim-not-a-minor.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-eric-cartman-im-not-a-minor" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Im Not A Minor</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-eric-cartman-im-not-fat', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Feric.cartman%2Fim-not-fat.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-eric-cartman-im-not-fat" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Im Not Fat</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-eric-cartman-im-sorry', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Feric.cartman%2Fim-sorry.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-eric-cartman-im-sorry" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Im Sorry</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-eric-cartman-in-the-ghetto-1', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Feric.cartman%2Fin-the-ghetto-1.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-eric-cartman-in-the-ghetto-1" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">In The Ghetto 1</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-eric-cartman-in-the-ghetto-2', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Feric.cartman%2Fin-the-ghetto-2.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-eric-cartman-in-the-ghetto-2" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">In The Ghetto 2</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-eric-cartman-look-pretty', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Feric.cartman%2Flook-pretty.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-eric-cartman-look-pretty" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Look Pretty</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-eric-cartman-master-got-me-working', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Feric.cartman%2Fmaster-got-me-working.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-eric-cartman-master-got-me-working" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Master Got Me Working</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-eric-cartman-respect-my-authority', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Feric.cartman%2Frespect-my-authority.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-eric-cartman-respect-my-authority" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Respect My Authority</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-eric-cartman-say-what-girlfriend', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Feric.cartman%2Fsay-what-girlfriend.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-eric-cartman-say-what-girlfriend" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Say What Girlfriend</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-eric-cartman-you-dirty-girl', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Feric.cartman%2Fyou-dirty-girl.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-eric-cartman-you-dirty-girl" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">You Dirty Girl</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-eric-cartman-you-should-have-respected-my-authority', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Feric.cartman%2Fyou-should-have-respected-my-authority.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-eric-cartman-you-should-have-respected-my-authority" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">You Should Have Respected My Authority</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="south-park-liane-cartman.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Liane Cartman</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-liane-cartman-i-have-to-work-tonight', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fliane.cartman%2Fi-have-to-work-tonight.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-liane-cartman-i-have-to-work-tonight" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">I Have To Work Tonight</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="south-park-mall-cops.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Mall Cops</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-mall-cops-hey-waht-are-you-doing', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fmall.cops%2Fhey-waht-are-you-doing.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-mall-cops-hey-waht-are-you-doing" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Hey Waht Are You Doing</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-mall-cops-move-along-maam', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fmall.cops%2Fmove-along-maam.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-mall-cops-move-along-maam" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Move Along Maam</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-mall-cops-move-along-sir', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fmall.cops%2Fmove-along-sir.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-mall-cops-move-along-sir" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Move Along Sir</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="south-park-mr-garrison.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Mr Garrison</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-mr-garrison-run-for-your-lives', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fmr.garrison%2Frun-for-your-lives.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-mr-garrison-run-for-your-lives" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Run For Your Lives</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-mr-garrison-smack-you-bithes-up', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fmr.garrison%2Fsmack-you-bithes-up.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-mr-garrison-smack-you-bithes-up" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Smack You Bithes Up</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-mr-garrison-you-sir-have-a-pizza-face', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fmr.garrison%2Fyou-sir-have-a-pizza-face.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-mr-garrison-you-sir-have-a-pizza-face" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">You Sir Have A Pizza Face</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="south-park-mr-mackey.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Mr Mackey</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-mr-mackey-drugs-are-bad-mkay', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fmr.mackey%2Fdrugs-are-bad-mkay.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-mr-mackey-drugs-are-bad-mkay" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Drugs Are Bad Mkay</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-mr-mackey-mkay', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fmr.mackey%2Fmkay.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-mr-mackey-mkay" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Mkay</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-mr-mackey-not-appropriate-behavior', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fmr.mackey%2Fnot-appropriate-behavior.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-mr-mackey-not-appropriate-behavior" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Not Appropriate Behavior</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-mr-mackey-very-disappointed', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fmr.mackey%2Fvery-disappointed.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-mr-mackey-very-disappointed" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Very Disappointed</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="south-park-pc-principal.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Pc Principal</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-pc-principal-assert-your-male-privilege', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fpc.principal%2Fassert-your-male-privilege.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-pc-principal-assert-your-male-privilege" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Assert Your Male Privilege</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-pc-principal-get-the-fuck-out-of-here-dude', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fpc.principal%2Fget-the-fuck-out-of-here-dude.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-pc-principal-get-the-fuck-out-of-here-dude" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Get The Fuck Out Of Here Dude</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-pc-principal-whats-wrong-with-being-gay', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fpc.principal%2Fwhats-wrong-with-being-gay.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-pc-principal-whats-wrong-with-being-gay" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Whats Wrong With Being Gay</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-pc-principal-you-got-a-fucking-problem', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fpc.principal%2Fyou-got-a-fucking-problem.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-pc-principal-you-got-a-fucking-problem" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">You Got A Fucking Problem</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-pc-principal-you-may-touch-my-penis', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fpc.principal%2Fyou-may-touch-my-penis.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-pc-principal-you-may-touch-my-penis" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">You May Touch My Penis</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="south-park-radiohead.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Radiohead</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-radiohead-everyone-has-problems', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fradiohead%2Feveryone-has-problems.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-radiohead-everyone-has-problems" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Everyone Has Problems</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-radiohead-what-a-little-cry-baby', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fradiohead%2Fwhat-a-little-cry-baby.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-radiohead-what-a-little-cry-baby" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">What A Little Cry Baby</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-radiohead-youre-gonna-cry-all-day', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fradiohead%2Fyoure-gonna-cry-all-day.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-radiohead-youre-gonna-cry-all-day" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Youre Gonna Cry All Day</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="south-park-token.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Token</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-token-good-job-dickhead', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Ftoken%2Fgood-job-dickhead.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-token-good-job-dickhead" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Good Job Dickhead</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="south-park-tony-hayward.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Tony Hayward</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-tony-hayward-sorry', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Ftony.hayward%2Fsorry.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-tony-hayward-sorry" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Sorry</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-tony-hayward-we-are-deeply-sorry', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Ftony.hayward%2Fwe-are-deeply-sorry.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-tony-hayward-we-are-deeply-sorry" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">We Are Deeply Sorry</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-tony-hayward-were-sorry-1', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Ftony.hayward%2Fwere-sorry-1.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-tony-hayward-were-sorry-1" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Were Sorry 1</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-tony-hayward-were-sorry-2', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Ftony.hayward%2Fwere-sorry-2.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-tony-hayward-were-sorry-2" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Were Sorry 2</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="south-park-various.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Various</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-various-i-need-about-tree-fiddy', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fvarious%2Fi-need-about-tree-fiddy.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-various-i-need-about-tree-fiddy" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">I Need About Tree Fiddy</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-various-they-took-our-job-1', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fvarious%2Fthey-took-our-job-1.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-various-they-took-our-job-1" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">They Took Our Job 1</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-various-they-took-our-job-2', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fvarious%2Fthey-took-our-job-2.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-various-they-took-our-job-2" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">They Took Our Job 2</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-various-they-took-our-job-3', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fvarious%2Fthey-took-our-job-3.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-various-they-took-our-job-3" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">They Took Our Job 3</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-south-park-various-tree-fiddy', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsouth.park%2Fvarious%2Ftree-fiddy.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-south-park-various-tree-fiddy" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Tree Fiddy</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="superbad-seth.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Seth</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-superbad-seth-people-dont-forget', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fsuperbad%2Fseth%2Fpeople-dont-forget.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-superbad-seth-people-dont-forget" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">People Dont Forget</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="the-big-lebowski-jesus.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Jesus</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-the-big-lebowski-jesus-fuck-you-up', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fthe.big.lebowski%2Fjesus%2Ffuck-you-up.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-the-big-lebowski-jesus-fuck-you-up" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Fuck You Up</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-the-big-lebowski-jesus-nobody-fucks-with-the-jesus', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fthe.big.lebowski%2Fjesus%2Fnobody-fucks-with-the-jesus.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-the-big-lebowski-jesus-nobody-fucks-with-the-jesus" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Nobody Fucks With The Jesus</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-the-big-lebowski-jesus-ready-to-be-fucked', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fthe.big.lebowski%2Fjesus%2Fready-to-be-fucked.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-the-big-lebowski-jesus-ready-to-be-fucked" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Ready To Be Fucked</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="the-big-lebowski-the-dude.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">The Dude</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-the-big-lebowski-the-dude-thats-your-opinion', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fthe.big.lebowski%2Fthe.dude%2Fthats-your-opinion.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-the-big-lebowski-the-dude-thats-your-opinion" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Thats Your Opinion</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                
+                <template id="the-wire-clay-davis.html">
+                    <ons-page id="home">
+                        <ons-toolbar>
+                            <div class="left"><ons-back-button></ons-back-button></div>
+                            <div class="center">Clay Davis</div>
+                        </ons-toolbar>
+                        <ons-list id="main-list">
+                
+                    <ons-list-item modifier="longdivider" tappable onclick="playSound('sound-the-wire-clay-davis-sheeeiiiit', 'https://firebasestorage.googleapis.com/v0/b/everyone-has-problems.appspot.com/o/sounds%2Fthe.wire%2Fclay.davis%2Fsheeeiiiit.mp3?alt=media')">
+                        <div class="left">
+                            <img id="sound-the-wire-clay-davis-sheeeiiiit" class="list-item__thumbnail" src="/static/img/play.png">
+                        </div>
+                        <div class="center">
+                            <span class="list-item__title">Sheeeiiiit</span>
+                            <span class="list-item__subtitle"></span>
+                        </div>
+                    </ons-list-item>
+                    
+                        </ons-list>
+                    </ons-page>
+                </template>
+                <!-- TEMPLATES_END -->
+<script>
+    function pushPage(page) {
+        document.querySelector('#navigator').pushPage(page);
+    }
+
+    function playSound(soundId, sound) {
+        toggle(soundId, sound);
+    }
+</script>
+</body>
+</html>
