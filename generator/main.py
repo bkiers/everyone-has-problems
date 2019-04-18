@@ -78,7 +78,7 @@ def replace_main_list():
         <template id="home.html">
             <ons-page id="home">
                 <ons-toolbar>
-                    <div class="center">Everyone has problems...</div>
+                    <div class="left slogan">Everyone has problems...</div>
                     <div class="right">
                         <ons-toolbar-button>
                             <ons-icon icon="ion-ios-search" onclick="pushPage('search.html')"></ons-icon>
