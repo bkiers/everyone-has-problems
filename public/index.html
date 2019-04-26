@@ -71,7 +71,7 @@
         <ons-toolbar>
             <div class="left"><ons-back-button></ons-back-button></div>
             <div class="center">
-                <ons-input id="search-input" placeholder="Search..." autofocus></ons-input>
+                <ons-input id="search-input" placeholder="Search..."></ons-input>
             </div>
         </ons-toolbar>
 
@@ -2918,6 +2918,8 @@
             if (!allSoundsList || !searchInput) {
                 return
             }
+
+            searchInput._input.focus()
 
             searchInput.oninput = function () {
                 let currentValue = this.value;
